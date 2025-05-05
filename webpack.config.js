@@ -2,6 +2,7 @@ import path from "node:path";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 import DotenvWebpackPlugin from "dotenv-webpack";
+import webpack from "webpack";
 
 export default (_env, argv) => {
   const prod = argv.mode === "production";
@@ -53,6 +54,9 @@ export default (_env, argv) => {
       ],
     },
     plugins: [
+      new webpack.DefinePlugin({
+        "process.env.API_KEY": JSON.stringify(process.env.API_KEY),
+      }),
       new DotenvWebpackPlugin(),
       new HtmlWebpackPlugin({ template: "public/index.html" }),
       !prod && new ReactRefreshWebpackPlugin(),

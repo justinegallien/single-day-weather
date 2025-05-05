@@ -32,6 +32,25 @@ export default function WeatherApp() {
   } else {
     return (
       <>
+        <div>
+          <label>
+            City Name:
+            <input
+              value={inputField}
+              onChange={(e) => setInputField(e.target.value)}
+              placeholder="city"
+              type="text"
+              name="city"
+              id="city"
+            />
+          </label>
+          <button
+            onClick={() => {
+              setCity(inputField);
+              getData();
+            }}
+          >Search</button>
+        </div>
         <h3>{weatherData.city}</h3>
         <p>{weatherData.temp}</p>
       </>
